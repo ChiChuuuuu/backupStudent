@@ -12,15 +12,14 @@
     <div class="main-panel">
         <div class="content">
             <div class="container-fluid">
-
+                <br><br><br><br>
                 <Table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Môn</th>
                             <th>Điểm Skill </th>
                             <th>Điểm Final </th>
-                            <th>Điểm Skill thi lại</th>
-                            <th>Điểm Final thi lại</th>
+                            <th>Tình trạng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,17 +27,23 @@
                             <tr>
                                 <td>{{ $grade->nameSub }}</td>
                                 <td>
-                                    {{ $grade->Skill1 }}
+                                    <div @if ($grade->Skill1 <= 5) style="color:red;" @endif>
+                                        {{ $grade->Skill1 }}
+                                    </div>
                                 </td>
                                 <td>
-                                    {{ $grade->Final1 }}
+                                    <div @if ($grade->Final1 <= 5) style="color:red;" @endif>
+                                        {{ $grade->Final1 }}
+                                    </div>
                                 </td>
                                 <td>
-                                    {{ $grade->Skill2 }}
+                                    @if( $grade->Skill1 <= 5 || $grade->Final1 <= 5)
+                                        Thi lại
+                                    @else
+                                        Qua môn
+                                    @endif
                                 </td>
-                                <td>
-                                    {{ $grade->Final2 }}
-                                </td>
+                                <td><a href="{{ route('grade2.show', $grade->idStudent) }}">Xem điểm thi lại</a></td>
                             </tr>
                         @endforeach
                     </tbody>

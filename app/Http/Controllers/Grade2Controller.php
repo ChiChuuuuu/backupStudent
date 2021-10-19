@@ -64,60 +64,14 @@ class Grade2Controller extends Controller
         return redirect(route('grade2.index'))->with('success', 'Thêm điểm thành công');
     }
 
-    public function insertByExcel()
+    public function show(Request $request, $id)
     {
-        return view('grade2.insert-by-excel');
-    }
-
-    public function GradePreview(Request $request)
-    {
-        //Lay du lieu trong file excel -> show thong tin 
-        $grade = Excel::toArray(new Grade2Import, $request->file('excel'));
-
-        //Kiem tra file co dung dinh dang hay khong
-        try {
-            $check = $grade[0][0];
-            $idStu = $check["id_sv"];
-            $name = $check["ho_ten"];
-            $idSub = $check["mon"];
-            $TH = $check["thuc_hanh"];
-            $LT = $check["ly_thuyet"];
-        } catch (Exception $e) {
-            return redirect()->back()->with('message', 'File không đúng định dạng hoặc không có dữ liệu!');
-        }
-
-        //put vao session
-        session(['tmp_grade' => $grade[0]]);
-
-        return view('grade2.preview', [
-            'grade' => $grade[0],
+        $grade = DB::table('grades')
+            ->join('subject', 'subject.idSub', '=', 'grades.idSub')
+            ->where('grades.idStudent', '=', $id)
+            ->get();
+        return view('grade2.show', [
+            'grade' => $grade
         ]);
-        return view('grade2.import-by-excel');
-    }
-
-    public function confirmSave()
-    {
-        $grade = session('tmp_grade');
-        $check = new Grade2Model();
-
-
-        if ($grade != null && count($grade) > 0) {
-            //Nhập vào database
-            foreach ($grade as $grade) {
-                DB::table("grades")->join('subject', 'subject.idSub', '=', 'grades.idSub')
-                ->updateOrInsert(
-                    ["idStudent" => $grade["id_sv"], "nameSub" => $grade["mon"]],
-                    [
-                        "Skill2" => $grade["thuc_hanh"],
-                        "Final2" => $grade["ly_thuyet"]
-                    ]
-                );
-            }
-        }
-        return redirect(route('grade2.insert-by-excel'))->with('success', 'Thêm điểm thành công');
-    }
-
-    public function exportByIdStudent($id){
-        return Excel::download(new Grade2Export($id), 'Diem sv.xlsx');
     }
 }
