@@ -60,11 +60,11 @@
 
                     <div class="collapse" id="collapseExample">
                         <ul class="nav">
-                            <li>
-                                <a href="#profile">
+                            {{-- <li>
+                                <a href="{{ route('change_password',Session::get('id')) }}">
                                     <span class="sidebar-normal">Đổi mật khẩu</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="{{ route('logout') }}">
                                     <span class="sidebar-normal">Đăng Xuất</span>

@@ -37,7 +37,8 @@
                 </tr>
                 <tr>
                     <th>Giới tính </th>
-                    <td>@if( Session::get('gender') == 0 )
+                    <td>
+                        @if (Session::get('gender') == 0)
                             Nam
                         @else
                             Nu
@@ -53,6 +54,11 @@
                     <td><a href="{{ route('student.edit', Session::get('id')) }}">Sửa thông tin</a></td>
                 </tr>
             </table>
+            @if (session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
         </div>
     </body>
 @endsection

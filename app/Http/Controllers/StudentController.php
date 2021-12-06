@@ -9,9 +9,11 @@ use App\Models\GradeModel;
 use App\Models\MajorModel;
 use App\Models\StudentModel;
 use App\Models\SubjectModel;
+use App\Rules\MatchOldPassword;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Student;
 
@@ -99,4 +101,5 @@ class StudentController extends Controller
     {
         //
     }
+
 }
