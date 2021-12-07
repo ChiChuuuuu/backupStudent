@@ -52,6 +52,7 @@
                 <tr>
                     <th></th>
                     <td><a href="{{ route('student.edit', Session::get('id')) }}">Sửa thông tin</a></td>
+                    <td><a href="{{ url('/pass-change', Session::get('id')) }}">Đổi mật khẩu</a></td>
                 </tr>
             </table>
             @if (session()->has('success'))

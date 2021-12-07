@@ -6,6 +6,8 @@ use App\Http\Controllers\Grade2Controller;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\PassChange;
+use App\Http\Controllers\PassController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\ViewGradeController;
@@ -64,6 +66,9 @@ Route::middleware([CheckLogin::class])->group(function () {
     Route::prefix('grade2')->name('grade2.')->group(function () {
         Route::get('/insert-by-excel', [Grade2Controller::class, 'insertByExcel'])->name('insert-by-excel');
     });
+
+    Route::get('/pass-change/{id}', [PassChange::class, 'PasswordChangeView']);
+    Route::post('/pass-confirm/{id}', [PassChange::class, 'confirmPassSave']);
     // Route::get('/grade2-sample', [Grade2Controller::class, 'GradeSample']);
 
     // Route::post('/grade2-preview', [Grade2Controller::class, 'GradePreview']);
