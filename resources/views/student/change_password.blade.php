@@ -20,13 +20,13 @@
                     <table>
                         <tr>
                             <td>
-                                <input type="text" name="current_password2" id="current_password2" value="{{ $student->password }}" hidden/>
+                                <input type="password" name="current_password2" id="current_password2" value="{{ $student->password }}" hidden/>
                             </td>
                         </tr>
                         <tr>
                             <td>Mật khẩu hiện tại</td>
                             <td>
-                                <input type="text" name="current_password" id="current_password" required />
+                                <input type="password" name="current_password" id="current_password" required />
                             </td>
                             <td>
                                 <span id="error-nhap-pass" id="error"></span>
@@ -35,7 +35,7 @@
                         <tr>
                             <td>Mật khẩu mới</td>
                             <td>
-                                <input type="text" name="new_password" id="nhap-pass1" required />
+                                <input type="password" name="new_password" id="nhap-pass1" required />
                             </td>
                             <td>
                                 <span id="error-nhap-pass1" id="error"></span>
@@ -44,7 +44,7 @@
                         <tr>
                             <td>Nhập lại mật khẩu mới</td>
                             <td>
-                                <input type="text" name="new_confirm_password" id="nhap-pass2" required />
+                                <input type="password" name="new_confirm_password" id="nhap-pass2" required />
                             </td>
                             <td>
                                 <span id="error-nhap-pass2" id="error"></span>
